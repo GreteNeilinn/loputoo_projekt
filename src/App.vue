@@ -1,26 +1,62 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <NavBar
+    :pages="pages"
+    :active-page="activePage"
+    :nav-link-click="(index) => (activePage = index)"
+  />
+  <GaleriiPage v-if="activePage == 0" />
+  <MainPage v-if="activePage == 1" />
+  <KontaktPage v-if="activePage == 2" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from "./components/NavBar.vue";
+import MainPage from "./components/MainPage.vue";
+import GaleriiPage from "./components/GaleriiPage.vue";
+import KontaktPage from "./components/KontaktPage.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    NavBar,
+    MainPage,
+    GaleriiPage,
+    KontaktPage,
+  },
+  data() {
+    return {
+      activePage: 1,
+      pages: [
+        {
+          pageTitle: "Galerii",
+          pageUrl: "galerii.html",
+        },
+        {
+          pageTitle: "Fotograaf",
+          pageUrl: "fotograaf.html",
+        },
+        {
+          pageTitle: "Kontakt",
+          pageUrl: "kontakt.html",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Playfair Display", serif;
+  font-style: "Playfair Display";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #fbf5ef;
+  color: #272744;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 </style>
