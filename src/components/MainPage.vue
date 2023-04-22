@@ -1,80 +1,79 @@
 <template>
-  <div class="container main">
-    <div class="middle">
-      <h1>Tutvustus</h1>
-      <p class="mainParagraph">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunit
-        ut labore et dolore magna aliqua.
+  <div class="home">
+    <div class="main">
+      <div class="mainContainer">
+        <h1 id="mainTitle">{{ mainTitle }}</h1>
+        <p class="mainParagraph">
+          {{ mainPara }}
+        </p>
+      </div>
+    </div>
+    <div class="container intro">
+      <h1 class="introTitle">{{ introTitle }}</h1>
+      <p class="introPara">
+        {{ introPara }}
       </p>
     </div>
-  </div>
-  <div class="container cards">
-    <div class="cardBox">
-      <div class="card">
-        <div class="face card-front">
-          <div class="card-image card-1"></div>
-          <h2 class="cardTitle">ÜRITUSED</h2>
-        </div>
-        <div class="face card-back">
-          <h2>Üritused</h2>
-          <p class="cardParagraph">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunit ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="face card-front">
-          <div class="card-image card-2"></div>
-          <h2 class="cardTitle">STUUDIO</h2>
-        </div>
-        <div class="face card-back">
-          <h2>Stuudio</h2>
-          <p class="cardParagraph">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunit ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="face card-front">
-          <div class="card-image card-3"></div>
-          <h2 class="cardTitle">PORTREED</h2>
-        </div>
-        <div class="face card-back">
-          <h2>Portreed</h2>
-          <p class="cardParagraph">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunit ut labore et dolore magna aliqua.
-          </p>
-        </div>
+    <div class="cards">
+      <div class="cardBox">
+        <Card
+          v-for="(card, index) in cards"
+          :key="index"
+          :title="card.title"
+          :svg="card.svg"
+        />
       </div>
     </div>
   </div>
-
   <h1>main</h1>
 </template>
 
 <script>
+import Card from "../components/Card.vue";
+
 export default {
   name: "MainPage",
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      activePage: 2,
+      mainTitle: "FOTOGRAAFI STUUDIO",
+      mainPara: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      introTitle: "Tutvustus",
+      introPara:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      cards: [
+        {
+          title: "ÜRITUSED",
+          svg: "~@/assets/",
+        },
+        {
+          title: "STUUDIO",
+          svg: "~@/assets/",
+        },
+        {
+          title: "PORTREED",
+          svg: "~@/assets/",
+        },
+      ],
+      cardPara:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunit ut labore et dolore magna aliqua.",
+    };
+  },
 };
 </script>
 
 <style scoped lang="scss">
+// -------------------- GENERAL ---------------
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
 h1 {
   font-size: 160%;
   font-weight: 500;
+  letter-spacing: 1px;
 }
 
 h2 {
@@ -84,37 +83,75 @@ h2 {
 
 .container {
   position: relative;
-  max-width: 100vw !important ;
+  width: 100%;
 }
 
-.container.main {
-  height: 95vh !important;
-  background: url("~@/assets/mainRight.jpg");
-  border: 5px solid #272744;
+// -------------------- MAIN ------------------
+
+.main {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh !important;
+  background-size: cover;
+  background-image: url("~@/assets/avaleht.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.container.cards {
-  position: relative !important;
-  height: 80vh;
-}
-
-.middle {
-  width: 45vh;
-  height: 40vh;
+.mainContainer {
+  padding: 20px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 40px;
-  transform: translate(-50%, -80%);
-  background-color: #c69fa5;
-  border: 5px solid #272744;
-  color: #fbf5ef;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+#mainTitle {
+  text-underline-offset: 10px;
+  text-decoration: underline #a7c4d4 5px;
 }
 
 .mainParagraph {
   margin-top: 30px;
 }
 
+// -------------------- INTRO ---------------
+
+.intro {
+  height: 500px;
+  max-width: 100vw;
+  background-color: #a7c4d4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  padding: 30px;
+}
+
+.introPara {
+  margin-top: 20px;
+  text-align: justify;
+  font-family: "Playfair Display", serif;
+}
+
+// -------------------- CARDS ----------------
+
+.cards {
+  position: relative !important;
+}
+
+.cardBox {
+  width: 70%;
+  flex-direction: row;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/*
 .cardBox {
   width: 70%;
   flex-direction: row;
@@ -130,84 +167,62 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
 }
-
-.card {
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 250px;
-  height: 40vh;
-  margin: 30px;
-  background: #f2d3ab;
-  align-self: normal;
-}
-
-.card:hover .card-front {
-  transform: perspective(600px) rotateY(180deg);
-}
-
-.card:hover .card-back {
-  transform: perspective(600px) rotateY(360deg);
-}
-
-.face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-.card-front {
-  transform: perspective(600px) rotateY(00deg);
-  box-shadow: 0 5px 10px #000;
-  background: #fbf5ef;
-  border: 5px solid #272744;
-}
-
-.card-back {
-  transform: perspective(600px) rotateY(180deg);
-  background: #494d7e;
-  color: #fbf5ef;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 20px;
-  border: 5px solid #272744;
-}
-
-.card-image {
-  background-color: #c69fa5;
-  height: 35vh;
-  border-bottom: 5px solid #272744;
-  background-size: cover;
-}
-
-.cardTitle {
-  padding: 1%;
-}
-
-.card-1 {
-  background-image: url("~@/assets/cardLeft.jpg");
-}
-
-.card-2 {
-  background-image: url("~@/assets/cardMiddle.jpg");
-}
-
-.card-3 {
-  background-image: url("~@/assets/cardRight.jpg");
-}
-
 @media only screen and (max-width: 1200px) {
   .cardBox {
     width: 100%;
   }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+@media only screen and (max-width: 1400px) {
   .cardBox {
     width: 80%;
+  }
+}
+*/
+
+// -------------------- DESKTOP VIEW ---------------
+
+@media only screen and (min-width: 1200px) {
+  .main {
+    margin: 0px;
+    padding: 0px;
+    height: 90vh !important;
+    width: 100%t;
+    background-size: cover;
+    background-image: url("~@/assets/avaleht.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .mainContainer {
+    top: 25%;
+    left: 20%;
+    transform: translateY(0%);
+    text-align: left;
+  }
+
+  h1 {
+    font-size: 50px;
+    letter-spacing: 3px;
+  }
+  .mainParagraph {
+    font-size: 20px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 300px;
+  }
+
+  .introTitle {
+    flex: 1;
+  }
+
+  .introPara {
+    flex: 1;
+    font-size: 24px;
   }
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
-  <NavBar
+  <Header
     :pages="pages"
     :active-page="activePage"
     :nav-link-click="(index) => (activePage = index)"
   />
   <GaleriiPage v-if="activePage == 0" />
-  <MainPage v-if="activePage == 1" />
-  <KontaktPage v-if="activePage == 2" />
+  <KontaktPage v-if="activePage == 1" />
+  <MainPage v-if="activePage == 2" />
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
+import Header from "./components/Header.vue";
 import MainPage from "./components/MainPage.vue";
 import GaleriiPage from "./components/GaleriiPage.vue";
 import KontaktPage from "./components/KontaktPage.vue";
@@ -18,22 +18,18 @@ import KontaktPage from "./components/KontaktPage.vue";
 export default {
   name: "App",
   components: {
-    NavBar,
+    Header,
     MainPage,
     GaleriiPage,
     KontaktPage,
   },
   data() {
     return {
-      activePage: 1,
+      activePage: 2,
       pages: [
         {
           pageTitle: "Galerii",
           pageUrl: "galerii.html",
-        },
-        {
-          pageTitle: "Fotograaf",
-          pageUrl: "fotograaf.html",
         },
         {
           pageTitle: "Kontakt",
@@ -46,15 +42,13 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 #app {
-  font-family: "Playfair Display", serif;
-  font-style: "Playfair Display";
+  font-family: "Patua One", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #fbf5ef;
-  color: #272744;
+  color: #4f6c77;
   width: 100%;
   height: 100%;
   margin: 0;
