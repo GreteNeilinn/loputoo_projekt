@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-transparent" id="nav">
+  <nav
+    class="navbar navbar-expand-sm bg-transparent"
+    :id="[activePage == 2 ? 'navMain' : 'nav']"
+  >
     <a class="navbar-brand" href="#" @click.prevent="navLinkClick(2)"
       ><img id="image" src="~@/assets/logo_transparent_dark.png" alt="logo"
     /></a>
@@ -38,9 +41,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#nav {
+#navMain {
   background-color: #eae9e5 !important;
 }
+
+#nav {
+  background-color: #ffffff !important;
+}
+
 .navbar {
   padding-left: 20px;
   padding-right: 20px;

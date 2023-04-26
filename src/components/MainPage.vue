@@ -1,31 +1,57 @@
 <template>
   <div class="home">
     <div class="main">
-      <div class="mainContainer">
-        <h1 id="mainTitle">{{ mainTitle }}</h1>
+      <div
+        class="mainContainer"
+        v-motion
+        :initial="{ opacity: 0, y: 100 }"
+        :enter="{ opacity: 1, y: 0 }"
+        :delay="150"
+      >
+        <div class="titleWrap">
+          <h1 id="mainTitle">{{ mainTitle }}</h1>
+          <div class="underline"></div>
+        </div>
         <p class="mainParagraph">
           {{ mainPara }}
         </p>
       </div>
     </div>
     <div class="container intro">
-      <h1 class="introTitle">{{ introTitle }}</h1>
-      <p class="introPara">
+      <h1
+        class="introTitle"
+        v-motion
+        :initial="{ opacity: 0, y: 100 }"
+        :visible="{ opacity: 1, y: 0 }"
+        :delay="150"
+      >
+        {{ introTitle }}
+      </h1>
+      <p
+        class="introPara"
+        v-motion
+        :initial="{ opacity: 0, y: 50 }"
+        :visible="{ opacity: 1, y: 0 }"
+        :delay="150"
+      >
         {{ introPara }}
       </p>
     </div>
-    <div class="cards">
-      <div class="cardBox">
-        <Card
-          v-for="(card, index) in cards"
-          :key="index"
-          :title="card.title"
-          :svg="card.svg"
-        />
-      </div>
+    <div
+      class="cardBox"
+      v-motion
+      :initial="{ opacity: 0, y: 50 }"
+      :visible="{ opacity: 1, y: 0 }"
+      :delay="150"
+    >
+      <Card
+        v-for="(card, index) in cards"
+        :key="index"
+        :title="card.title"
+        :svg="card.svg"
+      />
     </div>
   </div>
-  <h1>main</h1>
 </template>
 
 <script>
@@ -47,19 +73,17 @@ export default {
       cards: [
         {
           title: "ÜRITUSED",
-          svg: "~@/assets/",
+          svg: "champagne",
         },
         {
           title: "STUUDIO",
-          svg: "~@/assets/",
+          svg: "tripod",
         },
         {
           title: "PORTREED",
-          svg: "~@/assets/",
+          svg: "frame",
         },
       ],
-      cardPara:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunit ut labore et dolore magna aliqua.",
     };
   },
 };
@@ -101,18 +125,32 @@ h2 {
 
 .mainContainer {
   padding: 20px;
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 190px;
 }
 
-#mainTitle {
-  text-underline-offset: 10px;
-  text-decoration: underline #a7c4d4 5px;
+.titleWrap {
+  display: inline-block;
 }
+
+.underline {
+  height: 0px;
+  border: 5px solid #a7c4d4;
+  border-radius: 20px;
+}
+/*
+#mainTitle {
+  text-underline-offset: 15px;
+  text-decoration: underline #a7c4d4 10px;
+}
+*/
 
 .mainParagraph {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 // -------------------- INTRO ---------------
@@ -137,18 +175,15 @@ h2 {
 
 // -------------------- CARDS ----------------
 
-.cards {
-  position: relative !important;
-}
-
 .cardBox {
-  width: 70%;
-  flex-direction: row;
+  position: relative !important;
+  flex-direction: column;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 /*
@@ -194,7 +229,10 @@ h2 {
   }
 
   .mainContainer {
-    top: 25%;
+    display: block;
+    padding: 20px;
+    position: absolute;
+    top: 30%;
     left: 20%;
     transform: translateY(0%);
     text-align: left;
@@ -223,6 +261,16 @@ h2 {
   .introPara {
     flex: 1;
     font-size: 24px;
+  }
+
+  .cardBox {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 15%;
+    margin-right: 15%;
   }
 }
 </style>

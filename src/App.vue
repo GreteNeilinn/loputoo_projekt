@@ -7,6 +7,7 @@
   <GaleriiPage v-if="activePage == 0" />
   <KontaktPage v-if="activePage == 1" />
   <MainPage v-if="activePage == 2" />
+  <Footer />
 </template>
 
 <script>
@@ -14,6 +15,7 @@ import Header from "./components/Header.vue";
 import MainPage from "./components/MainPage.vue";
 import GaleriiPage from "./components/GaleriiPage.vue";
 import KontaktPage from "./components/KontaktPage.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
@@ -22,6 +24,7 @@ export default {
     MainPage,
     GaleriiPage,
     KontaktPage,
+    Footer,
   },
   data() {
     return {
