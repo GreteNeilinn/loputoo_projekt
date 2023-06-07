@@ -1,5 +1,10 @@
 # loputoo_projekt
 
+## Link to site
+```
+https://greteneilinn.github.io/loputoo_projekt/
+```
+
 ## Project setup
 ```
 npm install
